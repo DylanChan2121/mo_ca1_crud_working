@@ -8,6 +8,7 @@
                 <div class="card-header">Dashboard</div>
 
                 <div class="card-body">
+                  welcome to patients table <a href={{route('admin.doctors.index')}}>abous us</a>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

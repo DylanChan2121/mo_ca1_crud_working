@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Hello there!</div>
+                <div class="card-header">About doctor!</div>
 
                 <div class="card-body">
-                    hello welecome to medical center
+                  about page
                 </div>
             </div>
         </div>
