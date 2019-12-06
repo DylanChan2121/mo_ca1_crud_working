@@ -33,7 +33,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                          @if(Auth::check())
+                            @if(Auth::user()->isAdmin())
+                              <a class="navbar-brand" href="{{route('admin.doctors.index')}}">
+                                Doctors
+                              </a>
+                                <a class="navbar-brand" href="{{route('admin.patients.index')}}">
+                                  Patients
+                                </a>
+                                <a class="navbar-brand" href="{{route('admin.visits.index')}}">
+                                  Visits
+                                </a>
+                              @endif
+                            @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -14,4 +14,9 @@ class Patient extends Model
     public function user(){
       return $this->belongsTo('App\User');
     }
+
+   public function visits()
+    {
+    // return $this->belongsToMany('App\Admin')->using('App\Visits');//get rid of this function
+  }
 }

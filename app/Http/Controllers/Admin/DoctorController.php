@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Doctor;
+
 use App\Role;
 
 class DoctorController extends Controller
@@ -37,7 +38,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-      //  return view('admin.doctors.create');
+        return view('admin.doctors.create');
 
     }
 
@@ -105,7 +106,8 @@ class DoctorController extends Controller
 
       return view('admin.doctors.edit')->with([
         'doctor' => $doctor
-  ]);  }
+  ]);
+  }
 
     /**
      * Update the specified resource in storage.
@@ -118,7 +120,7 @@ class DoctorController extends Controller
     {
         $doctor =Doctor::findOrFail($id);
 
-            $user = User::findOrFail($id);
+            // $user = User::findOrFail($id);
 
       $request->validate([
         'name'=> 'required|max:191',
@@ -130,20 +132,14 @@ class DoctorController extends Controller
       ]);
 
 
-      $user->name = $request->input('name');
-      $user->email = $request->input('email');
-      $user->phone_number = $request->input('phone_number');
-      $user->postal_address = $request->input('postal_address');
-      $user->password = $request->input('password');
-      $user->save();
-
-
-
+      $doctor->user->name = $request->input('name');
+      $doctor->user->email = $request->input('email');
+      $doctor->user->phone_number = $request->input('phone_number');
+      $doctor->user->postal_address = $request->input('postal_address');
+      $doctor->user->password = $request->input('password');
       $doctor->starting_date = $request->input('starting_date');
-      $doctor->user_id = $user->id;
-      $user->roles()->attach(Role::where('name','doctor')->first());
+      $doctor->user->save();
       $doctor->save();
-
       return redirect()->route('admin.doctors.index');
 
 
@@ -158,7 +154,7 @@ class DoctorController extends Controller
     public function destroy($id)
     {
       $doctor = Doctor::findOrFail($id);
-      $doctor->delete();
+      $doctor->user->delete();
 
       return redirect()->route('admin.doctors.index');
     }

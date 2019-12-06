@@ -55,6 +55,11 @@ class User extends Authenticatable
       return $this->belongsToMany('App\Role','user_role');
     }
 
+    public function visits()
+    {
+      return $this->belongsToMany('App\Patient')->using('App\Visits');
+    }
+
     public function authorizeRoles($roles)
     {
 
@@ -81,5 +86,9 @@ class User extends Authenticatable
  else {
      //code...
  }
+
+}
+public function isAdmin(){
+  return $this->hasRole('admin');
 }
 }
